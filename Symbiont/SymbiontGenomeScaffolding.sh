@@ -37,7 +37,7 @@ SLR-unique-ambiguous -c Alv337.curated/Alv337.curated.final.scaffolds.fasta -r a
 
 # Iterate above steps up to ten times and proceed with best scaffolding result from either SLR or SLR-unique-ambiguous  
 
-mv SLR/scaffold_set.fa Epsilon_consensus.fasta
+mv SLR_unique_ambiguous/scaffold_set.fa Epsilon_consensus.fasta
 
 bwa index Epsilon_consensus.fasta
 bowtie2-build Epsilon_consensus.fasta Epsilon_consensus.fasta
