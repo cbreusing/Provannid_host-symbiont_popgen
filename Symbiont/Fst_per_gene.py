@@ -15,6 +15,7 @@ subpops = {
     pop2: df_samples[df_samples.Site == pop2].index,
 }
 
+# genes.txt contains a list of CDS for analysis 
 genes = np.genfromtxt('genes.txt', dtype='str')
 
 print(sys.argv[3], '-', sys.argv[4])

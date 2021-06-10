@@ -69,4 +69,5 @@ vcftools --vcf Epsilon.Freebayes.FINAL.recode.vcf --extract-FORMAT-info GT --out
 gatk VariantsToTable -V Epsilon.Freebayes.FINAL.recode.vcf -O Epsilon.Freebayes.FINAL.RD.FORMAT -F CHROM -F POS -F REF -ASGF RO
 gatk VariantsToTable -V Epsilon.Freebayes.FINAL.recode.vcf -O Epsilon.Freebayes.FINAL.AD.FORMAT -F CHROM -F POS -F ALT -ASGF AO --split-multi-allelic
 
-
+cp Epsilon.Freebayes.FINAL.RD.FORMAT Epsilon.Freebayes.FINAL.CT.FORMAT
+grep "Scaffold" Epsilon.Freebayes.FINAL.AD.FORMAT >> Epsilon.Freebayes.FINAL.CT.FORMAT 

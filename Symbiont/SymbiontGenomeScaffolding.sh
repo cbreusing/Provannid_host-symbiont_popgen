@@ -33,9 +33,11 @@ perl /gpfs/data/rbeinart/Software/SSPACE-LongRead/SSPACE-LongRead.pl -c SLR/uniq
 bwa index Alv337.longread/scaffolds.fasta
 bwa mem Alv337.longread/scaffolds.fasta SLR/unique-contig-set.fa > unique-contig.sam
 samtools view -Sb unique-contig.sam > unique-contig.bam
-SLR-unique-ambiguous -c Alv337.curated/Alv337.curated.final.scaffolds.fasta -r align.bam -d align-self.bam -u SLR/unique-contig-set.fa -s Alv337.longread/scaffolds.fasta -b unique-contig.bam -p SLR_FINAL_curated
+SLR-unique-ambiguous -c Alv337.curated/Alv337.curated.final.scaffolds.fasta -r align.bam -d align-self.bam -u SLR/unique-contig-set.fa -s Alv337.longread/scaffolds.fasta -b unique-contig.bam -p SLR_unique_ambiguous
 
-mv SLR_FINAL_curated/scaffold_set.fa Epsilon_consensus.fasta
+# Iterate above steps up to ten times and proceed with best scaffolding result from either SLR or SLR-unique-ambiguous  
+
+mv SLR/scaffold_set.fa Epsilon_consensus.fasta
 
 bwa index Epsilon_consensus.fasta
 bowtie2-build Epsilon_consensus.fasta Epsilon_consensus.fasta
