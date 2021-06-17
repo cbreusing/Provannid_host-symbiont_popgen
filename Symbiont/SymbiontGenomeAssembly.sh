@@ -23,7 +23,8 @@ samtools view -@ 24 -f12 ${file}.bowtie2.cont.sorted.bam > ${file}.cont.unmapped
 cut -f1 ${file}.cont.unmapped.sam | sort | uniq > ${file}.cont.unmapped_ids.lst
 seqtk subseq ${file}_R1_paired.fq ${file}.cont.unmapped_ids.lst > ${file}_R1_clean.fastq
 seqtk subseq ${file}_R2_paired.fq ${file}.cont.unmapped_ids.lst > ${file}_R2_clean.fastq
-bbsplit.sh -Xmx50g ref=/gpfs/data/rbeinart/cbreusing/Genomes/Gamma1.fasta,/gpfs/data/rbeinart/cbreusing/Genomes/GammaLau.fna,/gpfs/data/rbeinart/cbreusing/Genomes/Epsilon.fasta,/gpfs/data/rbeinart/cbreusing/Genomes/Ifr_SOX.fasta,/gpfs/data/rbeinart/cbreusing/Genomes/Ifr_MOX.fasta build=1 path=/gpfs/data/rbeinart/cbreusing/Genomes/ in=${file}_R1_clean.fastq in2=${file}_R2_clean.fastq ambiguous=best ambiguous2=toss basename=${file}_%_#.fq outu=${file}_unmapped_#.fq
+# Separate reads based on draft genomes assembled in Beinart et al. (2019)
+bbsplit.sh -Xmx50g ref=/gpfs/data/rbeinart/cbreusing/Genomes/Gamma1.fna,/gpfs/data/rbeinart/cbreusing/Genomes/GammaLau.fna,/gpfs/data/rbeinart/cbreusing/Genomes/Epsilon.fna,/gpfs/data/rbeinart/cbreusing/Genomes/Ifr_SOX.fna build=1 path=/gpfs/data/rbeinart/cbreusing/Genomes/ in=${file}_R1_clean.fastq in2=${file}_R2_clean.fastq ambiguous=best ambiguous2=toss basename=${file}_%_#.fq outu=${file}_unmapped_#.fq
 
 # Filtering of Nanopore reads for symbiont genome assembly
 /gpfs/data/rbeinart/Software/Porechop/porechop-runner.py -i ${file}_nanopore.fastq -o ${file}_nanopore_trim.fastq --threads 24 -v 1
