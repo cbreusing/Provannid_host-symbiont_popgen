@@ -46,5 +46,8 @@ samtools index Epsilon.bowtie2.sorted.bam
 bwa mem -t24 -k11 -W20 -r10 -A1 -B1 -O1 -E1 -L0 -a -Y Epsilon_consensus.fasta Alv337_nanopore_trim.fasta > Epsilon.bwa.sam
 samtools view -Sb -h -@ 24 Epsilon.bwa.sam | samtools sort -@ 24 - > Epsilon.bwa.sorted.bam
 samtools index Epsilon.bwa.sorted.bam
-pilon -Xmx200G --genome Epsilon_consensus.fasta --frags Epsilon.bowtie2.sorted.bam --unpaired Epsilon.bwa.sorted.bam --fix snps,indels,amb --output Epsilon --outdir pilon --threads 24
+pilon -Xmx200G --genome Epsilon_consensus.fasta --frags Epsilon.bowtie2.sorted.bam --unpaired Epsilon.bwa.sorted.bam --fix snps,indels,amb --output Epsilon_pilon --outdir pilon --threads 24
+
+# Rename scaffolds with continuous index
+perl /gpfs/data/rbeinart/cbreusing/Scripts/RenameContigs.pl pilon/Epsilon_pilon.fasta Epsilon.fasta
 

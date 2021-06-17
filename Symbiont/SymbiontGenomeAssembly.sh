@@ -28,7 +28,7 @@ bbsplit.sh -Xmx50g ref=/gpfs/data/rbeinart/cbreusing/Genomes/Gamma1.fasta,/gpfs/
 # Filtering of Nanopore reads for symbiont genome assembly
 /gpfs/data/rbeinart/Software/Porechop/porechop-runner.py -i ${file}_nanopore.fastq -o ${file}_nanopore_trim.fastq --threads 24 -v 1
 minimap2 -t 24 -x map-ont -a Epsilon.fna ${file}_nanopore_trim.fastq -t 24 | samtools view -Sb -h -@ 24 - | samtools sort -@ 24 - > ${file}.nanopore.sorted.bam
-samtools view -@ 50 -F4 ${file}.nanopore.sorted.bam > ${file}.nanopore.mapped.sam
+samtools view -@ 24 -F4 ${file}.nanopore.sorted.bam > ${file}.nanopore.mapped.sam
 cut -f1 ${file}.nanopore.mapped.sam | sort | uniq > ${file}.mapped_ont_ids.lst
 seqtk subseq ${file}_nanopore_trim.fastq ${file}.mapped_ont_ids.lst > ${file}_symbiont.nanopore.fastq
 
