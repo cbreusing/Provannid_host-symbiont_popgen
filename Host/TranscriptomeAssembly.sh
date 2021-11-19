@@ -54,6 +54,8 @@ do
 perl /gpfs/data/rbeinart/Software/rcorrector/run_rcorrector.pl -1 ${file}_1.fq -2 ${file}_2.fq -t 24
 python /gpfs/data/rbeinart/Software/TranscriptomeAssemblyTools/FilterUncorrectabledPEfastq.py -1 ${file}_1.cor.fq -2 ${file}_2.cor.fq -s ${file}
 fastqc -t 24 unfixrm_${file}_1.cor.fq unfixrm_${file}_2.cor.fq
+unzip unfixrm_${file}_1.cor_fastqc.zip
+unzip unfixrm_${file}_2.cor_fastqc.zip
 python /gpfs/data/rbeinart/Software/TranscriptomeAssemblyTools/RemoveFastqcOverrepSequenceReads.py -1 unfixrm_${file}_1.cor.fq -2 unfixrm_${file}_2.cor.fq -fql unfixrm_${file}_1.cor_fastqc/fastqc_data.txt -fqr unfixrm_${file}_2.cor_fastqc/fastqc_data.txt
 
 done
