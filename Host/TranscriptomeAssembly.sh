@@ -33,8 +33,8 @@ java -jar /gpfs/data/rbeinart/bin/trinityrnaseq-v2.11.0/trinity-plugins/Trimmoma
 bowtie2 -p 24 -x /gpfs/data/rbeinart/Databases/contaminants -1 ${file}_R1_paired.fastq -2 ${file}_R2_paired.fastq | samtools view -bS -h -@ 24 - | samtools sort -@ 24 - > ${file}.bowtie2.sorted.bam
 samtools view -@ 24 -f12 ${file}.bowtie2.sorted.bam > ${file}.unmapped.sam
 cut -f1 ${file}.unmapped.sam | sort | uniq > ${file}.unmapped_ids.lst
-seqtk subseq ${file}_R1_paired.fastq ${file}.unmapped_ids.lst1 > ${file}_R1_clean.fastq
-seqtk subseq ${file}_R2_paired.fastq ${file}.unmapped_ids.lst2 > ${file}_R2_clean.fastq
+seqtk subseq ${file}_R1_paired.fastq ${file}.unmapped_ids.lst > ${file}_R1_clean.fastq
+seqtk subseq ${file}_R2_paired.fastq ${file}.unmapped_ids.lst > ${file}_R2_clean.fastq
 
 # The contaminant free samples are then merged and used in sortmerna to remove rRNA
 /gpfs/data/rbeinart/Software/sortmerna-2.1b/scripts/merge-paired-reads.sh ${file}_R1_clean.fastq ${file}_R2_clean.fastq ${file}_merged.fastq
