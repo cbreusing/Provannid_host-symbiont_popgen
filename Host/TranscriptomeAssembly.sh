@@ -62,7 +62,7 @@ done
 
 # Assembly
 /gpfs/data/rbeinart/bin/trinityrnaseq-v2.11.0/Trinity --seqType fq --max_memory 150G --samples_file A_boucheti.txt --SS_lib_type RF --output A_boucheti.PasaFly.Trinity --bfly_algorithm PASAFLY --CPU 24 --full_cleanup
-/gpfs/data/rbeinart/bin/trinityrnaseq-v2.11.0/Trinity --seqType fa --max_memory 100G --single A_boucheti_KM433.fasta,A_boucheti_TC432.fasta --output A_boucheti.454.Trinity --bfly_algorithm PASAFLY --no_normalize_reads --CPU 16 --full_cleanup
+/gpfs/data/rbeinart/bin/trinityrnaseq-v2.11.0/Trinity --seqType fa --max_memory 100G --single A_boucheti_KM433.fasta,A_boucheti_TC432.fasta --output A_boucheti.454.Trinity --bfly_algorithm PASAFLY --no_normalize_reads --CPU 24 --full_cleanup
 
 cat A_boucheti*Trinity*fasta > A_boucheti.Trinity.combined.fasta
 
