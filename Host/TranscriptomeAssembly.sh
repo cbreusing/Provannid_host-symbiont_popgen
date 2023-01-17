@@ -89,7 +89,7 @@ bowtie2-build A_boucheti.Trinity.merged95.fasta.transdecoder.cds A_boucheti.Trin
 bowtie2 --very-sensitive -p 24 -x A_boucheti.Trinity.merged95.fasta.transdecoder.cds -1 A_boucheti_1.fq -2 A_boucheti_2.fq | samtools view -bS -h -@ 24 - | samtools sort -@ 24 - > A_boucheti.sorted.bam
 samtools view -h -@ 24 -o A_boucheti.sam A_boucheti.sorted.bam 
 
-blobtools create -i A_boucheti.Trinity.merged95.fasta.transdecoder.cds -s A_boucheti.sam -t A_boucheti_hits.txt
+blobtools create -i A_boucheti.Trinity.merged95.fasta.transdecoder.cds -o A_boucheti -s A_boucheti.sam -t A_boucheti_hits.txt
 blobtools view -i A_boucheti.blobDB.json -r all
 blobtools plot -i A_boucheti.blobDB.json --notitle -r superkingdom --format pdf --colours colors.txt
 grep "Eukaryota" A_boucheti.blobDB.table.txt > seqs_to_keep.txt
